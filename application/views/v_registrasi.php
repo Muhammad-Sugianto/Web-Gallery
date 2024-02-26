@@ -32,7 +32,7 @@
                 <div class="col-lg-4 mx-auto">
                     <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                         <div class="brand-logo">
-                            <img src="<?= base_url() ?>assets/page/img/icon_.png" alt="logo">
+                            <!-- <img src="<?= base_url() ?>assets/page/img/icon_.png" alt="logo"> -->
                         </div>
                         <h4>Silahkan Registrasi</h4>
                         <h6 class="font-weight-light">Untuk bergabung dengan kami</h6>

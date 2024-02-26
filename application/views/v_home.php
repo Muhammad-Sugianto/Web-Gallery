@@ -43,7 +43,8 @@
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
             <a href="" class="navbar-brand p-0 d-flex align-items-center">
     <img src="<?= base_url() ?>assets/img/log1.png" alt="Logo">
-    <h3 class="m-0 ms-2" style="color: white;">Madd DigiPhot's</h3>
+    <!-- <h3 class="m-0 ms-2" ">Madd DigiPhot's</h3> -->
+    <h3 class="m-0"></i>Madd DigiPhot's</h1>
 
 </a>
 
@@ -51,28 +52,35 @@
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="<?= base_url() ?>" class="nav-item nav-link active">Home</a>
-                        <a href="" class="nav-item nav-link">About</a>
-                        <a href="" class="nav-item nav-link">Gallery</a>
-                        <a href="<?= base_url('auth/login') ?>" class="nav-item nav-link">Login</a>
-                        <!-- <a href="blog.html" class="nav-item nav-link">Blog</a> -->
-                        <!-- <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="destination.html" class="dropdown-item">Destination</a>
-                                <a href="tour.html" class="dropdown-item">Explore Tour</a>
-                                <a href="booking.html" class="dropdown-item">Travel Booking</a>
-                                <a href="gallery.html" class="dropdown-item">Our Gallery</a>
-                                <a href="guides.html" class="dropdown-item">Travel Guides</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div> -->
-                        <!-- <a href="contact.html" class="nav-item nav-link">Contact</a> -->
-                    </div>
-                    <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Profil</a>
-                </div>
+    <div class="navbar-nav ms-auto py-0">
+        <a href="<?= base_url() ?>" class="nav-item nav-link active">Home</a>
+        <a href="#about" class="nav-item nav-link">About</a>
+        <a href="#" class="nav-item nav-link">Upload</a>
+    </div>
+    <?php if ($this->session->userdata('user_id')) : ?>
+        <!-- Dropdown untuk pengguna yang sudah login -->
+        <div class="dropdown">
+            <a href="#" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4 dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php
+                $user_id = $this->session->userdata('user_id');
+                // Mengambil informasi profil dari model atau basis data
+                $profil_info = $this->m_user->get_user_by_id($user_id);
+                ?>
+                <img src="<?= base_url('assets/profil/' . $profil_info->profil) ?>" alt="" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                <?= $profil_info->username ?>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<?= base_url('profile') ?>">Profile</a>
+                <a class="dropdown-item" href="<?= base_url('auth/logout') ?>">Logout</a>
+            </div>
+        </div>
+    <?php else : ?>
+        <!-- Tautan Login untuk pengguna yang belum login -->
+        <a href="<?= base_url('auth/login') ?>" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Login</a>
+    <?php endif; ?>
+</div>
+
+
             </nav>
 
             <!-- Carousel Start -->
@@ -85,7 +93,7 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
-                            <img src="<?= base_url() ?>assets/page/img/carousel-2.jpg" class="img-fluid" alt="Image">
+                            <img src="<?= base_url() ?>assets/img/a4.jpg" class="img-fluid" alt="Image">
                             <div class="carousel-caption">
                                 <div class="p-3" style="max-width: 900px;">
                                     <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Eksplorasi Visual Terbaik
@@ -101,7 +109,7 @@
                             </div>
                         </div>
                         <!-- <div class="carousel-item">
-                            <img src="<?= base_url() ?>assets/page/img/carousel-1.jpg" class="img-fluid" alt="Image">
+                            <img src="<?= base_url() ?>assets/page/<?= base_url() ?>assets/page/img/carousel-1.jpg" class="img-fluid" alt="Image">
                             <div class="carousel-caption">
                                 <div class="p-3" style="max-width: 900px;">
                                     <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Explore The World</h4>
@@ -115,7 +123,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= base_url() ?>assets/page/img/carousel-3.jpg" class="img-fluid" alt="Image">
+                            <img src="<?= base_url() ?>assets/page/<?= base_url() ?>assets/page/img/carousel-3.jpg" class="img-fluid" alt="Image">
                             <div class="carousel-caption">
                                 <div class="p-3" style="max-width: 900px;">
                                     <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Explore The World</h4>
@@ -152,12 +160,12 @@
         <!-- Navbar & Hero End -->
 
         <!-- About Start -->
-        <div class="container-fluid about py-5">
+        <div id="about" class="container-fluid about py-5">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-5">
                         <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
-                            <img src="<?= base_url() ?>assets/img/m.png" class="img-fluid w-100 h-100" alt="">
+                            <img src="<?= base_url() ?>assets/img/icon.png" class="img-fluid w-100 h-100" alt="">
                         </div>
                     </div>
                     <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
@@ -298,7 +306,7 @@
                                 <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
                                     <div class="service-icon p-4">
                                         <i class="fa fa-cog fa-4x text-primary"></i>
-                                    </div>
+                                    </div>  
                                     <div class="service-content">
                                         <h5 class="mb-4">Event Management</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
@@ -316,340 +324,132 @@
                 </div>
             </div>
         </div> -->
+      
         <!-- Services End -->
-
-        <!-- Destination Start -->
-        <div class="container-fluid destination py-5">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Destination</h5>
-                    <h1 class="mb-0">Popular Destination</h1>
-                </div>
-                <div class="tab-class text-center">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
-                        <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
-                                <span class="text-dark" style="width: 150px;">All</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                <span class="text-dark" style="width: 150px;">USA</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                <span class="text-dark" style="width: 150px;">Canada</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                <span class="text-dark" style="width: 150px;">Europe</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5">
-                                <span class="text-dark" style="width: 150px;">China</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-6">
-                                <span class="text-dark" style="width: 150px;">Singapore</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
-                            <div class="row g-4">
-                                <div class="col-xl-8">
-                                    <div class="row g-4">
-                                        <div class="col-lg-6">
-                                            <div class="destination-img">
-                                                <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-1.jpg" alt="">
-                                                <div class="destination-overlay p-4">
-                                                    <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a> -->
-                                                    <!-- <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                                </div>
-                                                <div class="search-icon">
-                                                    <a href="img/destination-1.jpg" data-lightbox="destination-1"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="destination-img">
-                                                <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-2.jpg" alt="">
-                                                <div class="destination-overlay p-4">
-                                                    <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                                    <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                                </div>
-                                                <div class="search-icon">
-                                                    <a href="img/destination-2.jpg" data-lightbox="destination-2"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="destination-img">
-                                                <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-7.jpg" alt="">
-                                                <div class="destination-overlay p-4">
-                                                    <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                                    <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                                </div>
-                                                <div class="search-icon">
-                                                    <a href="img/destination-7.jpg" data-lightbox="destination-7"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="destination-img">
-                                                <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-8.jpg" alt="">
-                                                <div class="destination-overlay p-4">
-                                                    <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                                    <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                                </div>
-                                                <div class="search-icon">
-                                                    <a href="img/destination-8.jpg" data-lightbox="destination-8"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4">
-                                    <div class="destination-img h-100">
-                                        <img class="img-fluid rounded w-100 h-100" src="<?= base_url() ?>assets/page/img/destination-9.jpg" style="object-fit: cover; min-height: 300px;" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-9.jpg" data-lightbox="destination-4"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-4.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-4.jpg" data-lightbox="destination-4"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-5.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-5.jpg" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-6.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-6.jpg" data-lightbox="destination-6"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tab-2" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-5.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-5.jpg" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-6.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <!-- <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <a href="#" class="btn-hover text-white"> <i class="fa fa-arrow-right ms-2"></i></a> -->
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-6.jpg" data-lightbox="destination-6"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tab-3" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-5.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <a href="#" class="btn-hover text-white"><i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-5.jpg" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-6.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <a href="#" class="btn-hover text-white"><i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-6.jpg" data-lightbox="destination-6"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tab-4" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-5.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <h4 class="text-white mb-2 mt-3"></h4>
-                                            <a href="#" class="btn-hover text-white"><i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-5.jpg" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-6.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <h4 class="text-white mb-2 mt-3"></h4>
-                                            <a href="#" class="btn-hover text-white"><i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-6.jpg" data-lightbox="destination-6"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tab-5" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-5.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <h4 class="text-white mb-2 mt-3"></h4>
-                                            <a href="#" class="btn-hover text-white"><i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-5.jpg" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-6.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <h4 class="text-white mb-2 mt-3"></h4>
-                                            <a href="#" class="btn-hover text-white"><i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-6.jpg" data-lightbox="destination-6"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tab-6" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-5.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <h4 class="text-white mb-2 mt-3"></h4>
-                                            <a href="#" class="btn-hover text-white"><i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-5.jpg" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="<?= base_url() ?>assets/page/img/destination-6.jpg" alt="">
-                                        <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3"></a>
-                                            <h4 class="text-white mb-2 mt-3"></h4>
-                                            <a href="#" class="btn-hover text-white"><i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/destination-6.jpg" data-lightbox="destination-6"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Destination End -->
-
-
-        <div class="container-fluid blog py-5">
+        
+    
+<div class="container-fluid blog py-5">
+    <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+        <h5 class="section-title px-3">Postingan</h5>
+        <h1 class="mb-4">Terbaru</h1>
+    </div>
     <div class="container py-5">
-        <div class="mx-auto text-center mb-5">
-            <h5 class="section-title px-3">Our Blog</h5>
-            <h1 class="mb-4">Popular Travel Blogs</h1>
-        </div>
-        <div class="row g-4 justify-content-center">
-            <?php foreach ($foto as $key => $value) { ?>
-            <div class="col-lg-3 col-md-4">
-                <div class="blog-item">
-                    <div class="blog-img">
-                        <div class="blog-img-inner" style="height: 250px; overflow: hidden;">
-                            <img class="img-fluid rounded-top" src="<?= base_url('assets/img/' . $value->lokasi_file) ?>" alt="" style="width: 100%; height: 100%; object-fit: cover;">
-                            <div class="blog-icon">
-                                <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
-                            </div>
-                        </div>
-                        <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
-                            <a href="#" class=" flex-fill text-center text-white border-end py-2"><i class="fa fa-heart  me-2"></i></a>
-                            <a href="#" class=" flex-fill text-center text-white py-2"><i class="fa fa-comments  me-2"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-content border border-top-0 rounded-bottom p-4">
-                        <p class="mb-3">akun<?= $value->username ?></p>
-                        <a href="#" class="h4"><?= $value->judul_ft ?></a>
-                        <p class="my-3"><?= $value->desk_ft ?></p>
-                        <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
-                    </div>
+        <div class="row justify-content-center align-items-center mb-6">
+            <div class="col-lg-4 col-md-4">
+                <!-- Kotak pencarian -->
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-primary" type="button">Search</button>
                 </div>
             </div>
-            <?php } ?>
+            <div class="row g-4 justify-content-center">
+                <?php foreach ($foto as $value) : ?>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="blog-item">
+                            <!-- Foto -->
+                            <div class="blog-img">
+                                <!-- Tautan -->
+                                <a href="<?= base_url('foto/detail/' . $value->foto_id) ?>">
+                                    <div class="blog-img-inner" style="height: 250px; overflow: hidden;">
+                                        <img class="img-fluid rounded-top" src="<?= base_url('assets/img/' . $value->lokasi_file) ?>" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                </a>
+                                <!-- Ikon -->
+                                <div class="blog-icon d-flex justify-content-between align-items-center px-3 pt-3">
+                                    <div>
+                                        <a href="<?= base_url('foto/detail/' . $value->foto_id) ?>" class="text-primary me-3"><i class="fas fa-heart"></i> <?= isset($total_likes_per_fotoid[$value->foto_id]) ? $total_likes_per_fotoid[$value->foto_id] : 0 ?></a>
+                                        <a href="<?= base_url('foto/detail/' . $value->foto_id) ?>" class="text-primary"><i class="fas fa-comments"></i> <?= isset($total_comments_per_fotoid[$value->foto_id]) ? $total_comments_per_fotoid[$value->foto_id] : 0 ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Konten -->
+                            <div class="blog-content border border-top-0 rounded-bottom p-4">
+                            <p class="mb-2">
+    <img class="profile-picture" src="<?= base_url('assets/profil/' . $value->profil); ?>" alt="Profile Picture">
+    <span class="username"><?= $value->username; ?></span>
+</p>
+                                       
+                                <a href="#" class="h4 mb-3"><?= $value->judul_ft; ?></a>
+                                <div class="product-descc mb-3">
+                                    <p class="mb-0">
+                                        <span class="short-descc"><?= implode(' ', array_slice(explode(' ', $value->desk_ft), 0, 3)); ?>...</span>
+                                        <span class="full-descc" style="display: none;"><?= $value->desk_ft; ?></span>
+                                        <a class="toggle-link" href="javascript:void(0);" onclick="toggleDescription(this)">Selengkapnya</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </div>
 
+
+
+<style>
+ .profile-picture {
+        width: 50px; /* Atur lebar gambar sesuai kebutuhan */
+        height: 50px; /* Atur tinggi gambar sesuai kebutuhan */
+        border-radius: 50%; /* Membuat gambar menjadi lingkaran */
+        object-fit: cover; /* Memastikan gambar terpotong dengan baik dalam lingkaran */
+    }
+    .username {
+        margin-bottom: 2px; /* Menambahkan jarak bawah antara foto profil dan teks username */
+    }
+</style>
+
+
+<!-- JavaScript -->
+<script>
+
+     // Fungsi untuk menangani pengguliran ke bagian "About" saat tautan diklik
+     document.querySelector('a[href="#about"]').addEventListener('click', function(e) {
+        e.preventDefault(); // Mencegah perilaku default dari tautan
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth' // Efek gulir halus
+        });
+    });
+function toggleDescription(link) {
+    var parentDiv = link.closest('.product-descc');
+    var shortDesc = parentDiv.querySelector('.short-descc');
+    var fullDesc = parentDiv.querySelector('.full-descc');
+
+    if (shortDesc.style.display === 'none' || shortDesc.style.display === '') {
+        shortDesc.style.display = 'inline';
+        fullDesc.style.display = 'none';
+        link.innerHTML = 'Selengkapnya';
+    } else {
+        shortDesc.style.display = 'none';
+        fullDesc.style.display = 'inline';
+        link.innerHTML = 'Sembunyikan';
+    }
+}
+</script>
+
+
+
 </div>
+
+<!-- Gallery Start -->
+<div class="container-fluid gallery py-5 my-5">
+    <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+        <h5 class="section-title px-3"></h5>
+        <h1 class="mb-4">Album</h1>
+    </div>
+    <div class="tab-class text-center">
+        <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+            <?php foreach ($data_album as $value) { ?>
+                <li class="nav-item">
+                    <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="<?= base_url('home/dataalbum/' . $value->album_id); ?>">
+                        <img src="<?= base_url('assets/album/' . $value->gambar); ?>" class="img-thumbnail" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; margin-right: 10px;">
+                        <span class="text-dark"><?= $value->nama_album ?></span>
+                    </a>
+                </li>
+            <?php } ?>
+        </ul>
+    </div>
+</div>
+
 

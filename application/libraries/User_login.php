@@ -14,10 +14,16 @@ class User_login {
         $user = $this->ci->m_auth->login_user($username, $password);
 
         if ($user) {
-            $this->ci->session->set_userdata('user_id', $user->user_id);
-            $this->ci->session->set_userdata('username', $user->username);
-            $this->ci->session->set_userdata('nama_lengkap', $user->nama_lengkap);
-            $this->ci->session->set_userdata('level', $user->level);
+            $user_id = $user->user_id; 
+            $profil = $user->profil;
+            $nama_lengkap = $user->nama_lengkap; 
+            $level = $user->level; 
+           
+            $this->ci->session->set_userdata('user_id', $user_id);
+            $this->ci->session->set_userdata('profil', $profil);
+            $this->ci->session->set_userdata('username', $username);
+            $this->ci->session->set_userdata('nama_lengkap', $nama_lengkap);
+            $this->ci->session->set_userdata('level', $level);
             
             if ($user->level == 'admin') {
                 redirect(base_url('admin/dashboard')); // Sesuaikan dengan alamat dashboard admin

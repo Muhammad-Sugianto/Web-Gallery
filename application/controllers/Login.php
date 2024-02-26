@@ -15,8 +15,8 @@ class Login extends CI_Controller {
         $data = array (
             'title' => 'login',
             // 'login' => $this->m_user-->get_all_data(),
-            'isi' => 'login',
+            'isi' => 'v_login',
         );
-        $this->load->view('layout/v_wrapper_backend', $data); // Load view dengan data yang diperlukan
+        $this->load->view('layout/v_wrapper_frontend', $data); // Load view dengan data yang diperlukan
     }
 }

@@ -14,12 +14,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">Data Like</h2>
-                        <a href="<?= base_url('like/add') ?>" class="btn btn-success float-right">
+                        <!-- <a href="<?= base_url('like/add') ?>" class="btn btn-success float-right">
                             <span class="d-flex align-items-center">
                                 <i class="mdi mdi-plus"></i>
                                 <span class="ml-2">Like</span>
                             </span>
-                        </a>
+                        </a> -->
 
                         <!-- Tabel -->
                         <div class="table-responsive">
@@ -43,10 +43,10 @@
                                             <td class="text-left"><?= $value->foto_id ?></td>
                                             <td class="text-left"><?= $value->user_id ?></td>
                                             <td class="text-left"><?= $value->tgl_like ?></td>
-                                            <td class="text-left">
+                                            <!-- <td class="text-left">
                                                 <a href="<?= base_url('like/edit/' . $value->like_id) ?>" class="btn btn-warning"><i class="mdi mdi-pencil"></i></i></a>
                                                 <a href="<?= base_url('like/delete/' . $value->like_id) ?>" class="btn btn-danger"><i class="mdi mdi-delete"></i></i></a>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

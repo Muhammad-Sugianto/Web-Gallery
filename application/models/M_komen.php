@@ -25,4 +25,20 @@ class M_komen extends CI_Model
         $this->db->where('komen_id', $komen_id);
         $this->db->delete('tbl_komen');
     }
+
+    public function add_comment($data)
+    {
+        $this->db->insert('tbl_komen', $data); // Menambahkan komentar baru ke dalam tabel
+    }
+
+    public function get_comments_with_user_info($foto_id)
+    {
+        $this->db->select('k.*, u.nama_lengkap, u.username, u.profil');
+        $this->db->from('tbl_komen k');
+        $this->db->join('tbl_user u', 'u.user_id = k.user_id');
+        $this->db->where('k.foto_id', $foto_id);
+        $this->db->order_by('k.tgl_komen', 'asc');
+        return $this->db->get()->result();
+    }
 }
+?>

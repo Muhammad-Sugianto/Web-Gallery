@@ -5,53 +5,65 @@
                 <h3 class="text-center">Tambah Album</h3>
             </div>
             <div class="card-body">
-            <?php echo form_open_multipart('album/add'); ?>
-                <div class="form-group row"> 
-    <label for="album_id" class="col-sm-4 col-form-label text-right">Album_id</label>
-    <div class="col-sm-5">
-        <input type="text" class="form-control bg-light" id="album_id" name="album_id" required>
-    </div>
-</div>
-<div class="form-group row">
-    <label for="nama_album" class="col-sm-4 col-form-label text-right">Nama Album</label>
-    <div class="col-sm-5">
-        <input type="text" class="form-control bg-light" id="nama_album" name="nama_album" required>
-    </div>
-</div>
-<div class="form-group row">
-    <label for="deskripsi" class="col-sm-4 col-form-label text-right">Deskripsi</label>
-    <div class="col-sm-5">
-        <input type="text" class="form-control bg-light" id="deskripsi" name="deskripsi">
-    </div>
-</div>
-<div class="form-group row">
-    <label for="tgl_buat" class="col-sm-4 col-form-label text-right">Tgl_Buat</label>
-    <div class="col-sm-5">
-        <input type="date" class="form-control bg-light" id="tgl_buat" name="tgl_buat" required>
-    </div>
-</div>
-<div class="form-group row">
-    <label for="user_id" class="col-sm-4 col-form-label text-right">User_id</label>
-    <div class="col-sm-5">
-        <input type="text" class="form-control bg-light" id="user_id" name="user_id" required>
-    </div>
-</div>
+    <?php echo validation_errors(); ?>
+    <?php if(isset($error)) { echo $error['error']; } ?>
 
-                <div class="form-group row text-center">
-                    <div class="col-sm-12">
-                        <a href="<?= base_url('album') ?>" class="btn btn-secondary mr-2">
-                            <i class="mdi mdi-arrow-left"></i> Kembali
-                        </a>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="mdi mdi-content-save"></i> Simpan
-                        </button>
-                    </div>
-                </div>
-                <?php
-    echo form_close();
-    ?>
+    <?php echo form_open_multipart('album/add', 'class="form"') ?>
+        <div class="form-group row">
+            <label for="album_id" class="col-sm-4 col-form-label text-right">Album ID</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control bg-light" id="album_id" name="album_id" value="<?php echo set_value('album_id'); ?>" required>
             </div>
         </div>
+
+        <div class="form-group row">
+            <label for="nama_album" class="col-sm-4 col-form-label text-right">Nama Album</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control bg-light" id="nama_album" name="nama_album" value="<?php echo set_value('nama_album'); ?>" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="deskripsi" class="col-sm-4 col-form-label text-right">Deskripsi</label>
+            <div class="col-sm-5">
+                <textarea class="form-control bg-light" id="deskripsi" name="deskripsi" rows="3" required><?php echo set_value('deskripsi'); ?></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="gambar" class="col-sm-4 col-form-label text-right">Gambar</label>
+            <div class="col-sm-5">
+                <input type="file" name="gambar" class="form-control" id="gambar" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="tgl_buat" class="col-sm-4 col-form-label text-right">Tanggal Buat</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control bg-light" id="tgl_buat" name="tgl_buat" value="<?php echo set_value('tgl_buat'); ?>" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="user_id" class="col-sm-4 col-form-label text-right">User ID</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control bg-light" id="user_id" name="user_id" value="<?php echo set_value('user_id'); ?>" required>
+            </div>
+        </div>
+
+        <div class="form-group row text-center">
+            <div class="col-sm-12">
+                <a href="<?= base_url('album') ?>" class="btn btn-secondary mr-2">
+                    <i class="mdi mdi-arrow-left"></i> Kembali
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="mdi mdi-content-save"></i> Simpan
+                </button>
+            </div>
+        </div>
+    <?= form_close() ?>
+</div>
+
     </div>
 </div>
 <style>

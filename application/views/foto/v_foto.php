@@ -31,7 +31,7 @@
                                             <th>Judul Foto</th>
                                             <th>Deskripsi Foto</th>
                                             <th>Tanggal Unggah</th>
-                                            <th>Lokasi File</th>
+                                            <th>Gambar</th>
                                             <th>Album ID</th>
                                             <th>User ID</th>
                                             <th>Action</th>     

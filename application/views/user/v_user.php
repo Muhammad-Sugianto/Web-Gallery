@@ -1,5 +1,26 @@
 <div class="main-panel">
         <div class="content-wrapper">
+           <!-- Pesan keberhasilan -->
+           <?php if ($this->session->flashdata('success')): ?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-success" role="alert">
+                        <?= $this->session->flashdata('success'); ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+        
+        <!-- Pesan kesalahan -->
+        <?php if (validation_errors()): ?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo validation_errors(); ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
             <div class="row">
                 <div class="col-lg-15">
                     <div class="d-flex align-items-center mb-5">
@@ -30,6 +51,7 @@
                                             <th>Username</th>
                                             <th>Password</th>
                                             <th>Email</th>
+                                            <th>profil</th>
                                             <th>Nama Lengkap</th>
                                             <th>Alamat</th>
                                             <!-- <th>Level</th> -->
@@ -44,6 +66,9 @@
                                                 <td class="text-left"><?= $value->username ?></td>
                                                 <td class="text-left"><?= $value->password ?></td>
                                                 <td class="text-left"><?= $value->email ?></td>
+                                                <td class="text-left">
+                                                <img src="<?= base_url('assets/profil/'. $value->profil) ?>" width="4000px" height="800px" style="border-radius: 10px;">
+                                                </td>
                                                 <td class="text-left"><?= $value->nama_lengkap ?></td>
                                                 <td class="text-left"><?= $value->alamat ?></td>
                                                 <td class="text-left">

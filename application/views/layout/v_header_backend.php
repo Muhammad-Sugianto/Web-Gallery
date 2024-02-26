@@ -26,20 +26,29 @@
         <ul class="navbar-nav navbar-nav-right">
          
          
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-              <img src="" alt=""/>
-              <span class="nav-profile-name"><?= $this->session->userdata('username') ?></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="mdi mdi-settings text-primary"></i>
-                Settings
-              </a>
-              <a class="dropdown-item" href="<?= base_url('auth/logout') ?>">
-    <i class="mdi mdi-logout text-primary"></i>
-    Logout
-</a>
+        <li class="nav-item nav-profile dropdown">
+    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+        <?php
+        $profil = ''; // Tentukan alamat gambar profil default
+        if ($this->session->userdata('profil')) {
+            $profil = base_url('assets/profil/' . $this->session->userdata('profil')); // Sesuaikan dengan alamat gambar profil
+        }
+        ?>
+        <!-- <img src="<?= $profil ?>" alt=""/> -->
+        <span class="nav-profile-name"><?= $this->session->userdata('username') ?></span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+        <a class="dropdown-item">
+            <i class="mdi mdi-settings text-primary"></i>
+            Settings
+        </a>
+        <a class="dropdown-item" href="<?= base_url('auth/logout') ?>">
+            <i class="mdi mdi-logout text-primary"></i>
+            Logout
+        </a>
+    </div>
+</li>
+
 
             </div>
           </li>
@@ -87,7 +96,7 @@
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('komen') ?>">
               <i class="mdi mdi-comment menu-icon"></i>
-              <span class="menu-title">Komen</span>
+              <span class="menu-title">Komentar</span>
             </a>
           </li>
           

@@ -14,12 +14,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">Data Komentar</h2>
-                        <a href="<?= base_url('komen/add') ?>" class="btn btn-success float-right">
+                        <!-- <a href="<?= base_url('komen/add') ?>" class="btn btn-success float-right">
                             <span class="d-flex align-items-center">
                                 <i class="mdi mdi-plus"></i>
                                 <span class="ml-2">Komentar</span>
                             </span>
-                        </a>
+                        </a> -->
 
                         <!-- Tabel -->
                         <div class="table-responsive">
@@ -45,10 +45,10 @@
                                             <td class="text-left"><?= $value->user_id ?></td>
                                             <td class="text-left"><?= $value->isi_komen ?></td>
                                             <td class="text-left"><?= $value->tgl_komen ?></td>
-                                            <td class="text-left">
+                                            <!-- <td class="text-left">
                                                 <a href="<?= base_url('komen/edit/' . $value->komen_id) ?>" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
                                                 <a href="<?= base_url('komen/delete/' . $value->komen_id) ?>" class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

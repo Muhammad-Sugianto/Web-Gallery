@@ -19,12 +19,6 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="tgl_unggah" class="col-sm-4 col-form-label text-right">Tanggal Unggah</label>
-                    <div class="col-sm-5">
-                        <input type="date" class="form-control bg-light" id="tgl_unggah" name="tgl_unggah" required>
-                    </div>
-                </div>
-                <div class="form-group row">
     <label for="lokasi_file" class="col-sm-4 col-form-label text-right">Lokasi file</label>
     <div class="col-sm-5">
         <input type="file" name="lokasi_file" class="form-control" required>
@@ -40,18 +34,18 @@
 </div>
 
 
-                <div class="form-group row">
-                    <label for="album_id" class="col-sm-4 col-form-label text-right">Album ID</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control bg-light" id="album_id" name="album_id" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="user_id" class="col-sm-4 col-form-label text-right">User ID</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control bg-light" id="user_id" name="user_id" required>
-                    </div>
-                </div>
+<div class="form-group row">
+    <label for="album_id" class="col-sm-4 col-form-label text-right">Album</label>
+    <div class="col-sm-5">
+        <select class="form-control" id="album_id" name="album_id" required>
+            <option value="">Pilih Album</option>
+            <?php foreach ($album as $album): ?>
+                <option value="<?= $album->album_id ?>"><?= $album->nama_album ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+</div>
+
                 <div class="form-group row text-center">
                     <div class="col-sm-12">
                         <a href="<?= base_url('user') ?>" class="btn btn-secondary mr-2">
@@ -69,6 +63,24 @@
         </div>
     </div>
 </div>
+<style>
+    .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em; /* adjust as needed */
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.25em;
+    color: white;
+    cursor: pointer;
+}
+
+.btn i {
+    font-size: 1.25em; /* adjust as needed */
+}
+</style>
+
 <style>
     .btn {
     display: inline-flex;

@@ -34,13 +34,11 @@
 
 
                     <div class="form-group row">
-    <label for="lokasi_file" class="col-sm-4 col-form-label text-right">Lokasi file</label>
-    <div class="col-sm-5">
-        <input type="file" name="lokasi_file" class="form-control bg-light" placeholder="Lokasi file">
-        <small class="text-muted">Leave it empty if you don't want to change the file.</small>
+        <label for="lokasi_file" class="col-sm-4 col-form-label text-right">Gambar</label>
+        <div class="col-sm-5">
+            <input type="file" name="lokasi_file" class="form-control" id="lokasi_file" required>
+        </div>
     </div>
-</div>
-
                     <div class="form-group row">
                         <label for="album_id" class="col-sm-4 col-form-label text-right">Album ID</label>
                         <div class="col-sm-5">

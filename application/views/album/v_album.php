@@ -30,6 +30,7 @@
                                                 <th>Album Id</th>
                                                 <th>Nama Album</th>
                                                 <th>Deskripsi</th>
+                                                <th>Gambar</th>
                                                 <th>Tgl Buat</th>
                                                 <th>User Id</th>
                                                 <th>Action</th>     
@@ -43,6 +44,8 @@
                                                     <td class="text-left"><?= $value->album_id ?></td>
                                                     <td class="text-left"><?= $value->nama_album ?></td>
                                                     <td class="text-left"><?= $value->deskripsi ?></td>
+                                                    <td class="text-left">
+                                                        <img src="<?= base_url('assets/album/'. $value->gambar) ?>" width="4000px" height="800px" style="border-radius: 10px;"></td>
                                                     <td class="text-left"><?= $value->tgl_buat ?></td>
                                                     <td class="text-left"><?= $value->user_id ?></td>
                                                     <td class="text-left">

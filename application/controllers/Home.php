@@ -1,7 +1,6 @@
 <?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
-
 class Home extends CI_Controller
 {
     
@@ -13,6 +12,8 @@ class Home extends CI_Controller
         $this->load->model('m_like');
         $this->load->model('m_komen');
         $this->load->model('m_user');
+        $this->load->model('m_album');
+
        
 
     }
@@ -23,13 +24,18 @@ class Home extends CI_Controller
         $data = array(
             'title' => 'Home',
             'foto' => $this->m_foto->get_all_data(),
+            'user' => $this->m_user->get_all_data(),
+            'data_album' => $this->m_album->getDataalbum(),
             'isi' => 'v_home',
+
         );
         $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
         
     }   
+
     public function profile()
     {
+
         $data = array(
             'title' => 'profile',
             'isi' => 'profile/v_profile',
@@ -129,11 +135,11 @@ class Home extends CI_Controller
     }
 
     // Fungsi untuk memeriksa apakah foto sudah dilike oleh pengguna
-    private function is_liked($foto_id)
-    {
-        $user_id = $this->session->userdata('user_id'); // Sesuaikan dengan cara Anda mengelola sesi login
-        return $this->m_like->isLiked($foto_id, $user_id);
-    }
+    // private function is_liked($foto_id)
+    // {
+    //     $user_id = $this->session->userdata('user_id'); // Sesuaikan dengan cara Anda mengelola sesi login
+    //     return $this->m_like->isLiked($foto_id, $user_id);
+    // }
 
     public function remove_like($foto_id)
     {
@@ -172,7 +178,7 @@ class Home extends CI_Controller
         
         $this->m_komen->add_comment($data);
         
-        redirect('home' . $foto_id);
+        redirect('foto/detail/' . $foto_id);
     }
     
     
@@ -217,7 +223,11 @@ class Home extends CI_Controller
         redirect('home/postingan');
     }
     
-
+    private function is_liked($foto_id)
+    {
+        $user_id = $this->session->userdata('user_id'); // Sesuaikan dengan cara Anda mengelola sesi login
+        return $this->m_like->is_liked($foto_id, $user_id);
+    }
 
    
 }

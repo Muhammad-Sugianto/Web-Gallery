@@ -33,6 +33,15 @@ class M_album extends CI_Model
       return $this->db->get_where('tbl_album', array('album_id' => $album_id))->row();
     }
 
+    public function getDataalbum()
+    {
+        $this->db->select('tbl_album.*, tbl_user.username');
+        $this->db->from('tbl_album');
+        $this->db->join('tbl_user', 'tbl_album.user_id = tbl_user.user_id');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 
     public function delete($album_id)
     {
